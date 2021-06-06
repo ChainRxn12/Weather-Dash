@@ -40,6 +40,10 @@ button:hover{
   color: #ffffff;
   border: 1px solid #ffffff;
 }
+#error {
+  color: red;
+  font-weight: bolder;
+}
 
 .form-label {
   color: black;
