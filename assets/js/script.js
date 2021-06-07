@@ -7,63 +7,35 @@ function displayTime() {
 
 setInterval(displayTime, 1000);
 
- //var myApi = '38246d45daca6900eaed0981bae0766c';
+//var myApi = '38246d45daca6900eaed0981bae0766c';
 // var currentCity ="";
 // var lastCity = "";
-// var city = $('#searchCity').val();
-// var requestUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + myApi;
+// var searchButton = $('#search-button');
 
-// $(document).ready(function() {
-//   //create event listener for search button
-//     $('#search-button').click(function() {
-//   //create city variables with button id    
-//       var city = $('#searchCity').val();
-//       if(city != '') {
-//   //retrieve data from open weather api      
-//         $.ajax({
-//           url:'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial' + '&APPID=38246d45daca6900eaed0981bae0766c',
-//           method: "GET",
-//           dataType: "jsonp",
-//           data: {
-//             q: city,
-//             appid: myApi,
-//             units: "imperial",
-//             cnt: "10",
-//           },
-//           success: function(data){
-//             console.log('Received data:' , data);
-//             var weatherForecast = "";
-//             weatherForecast += "<h2>" + data.city.name + "</h2>"; 
-//             $.each(data.list, function(index, val) {
-//               weatherForecast += "<p>" 
-//               weatherForecast += "<b>Day" + index + "</b>:"
-//               weatherForecast += val.main.temp + "&degF"
-//               weatherForecast += "<span> | " + val.weather[0].description + "</span>";
-//               weatherForecast += "img src='https://openweathermap.org/img/w/" + val.weather[0].icon + ".png'>"
-//               weatherForecast += "</p>"
-//             });
-//             $("showWeatherForecast").html(weatherForecast);
-//           }
-//         });
-//   //display error message when search field 
-//       }else {
-//         $('#error').html('Field cannot be empty');
-//       }
-//     });
-// });
-var city = $('#searchCity').val();
-var searchButton = $('#search-button');
-
-function getApi() {
-  var requestUrl = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial' + '&APPID=38246d45daca6900eaed0981bae0766c';
-
-  fetch(requestUrl) 
-    if(city != '') {
-      .then(function (response) {
-        
-      })
+// ready DOM
+$(document).ready(function() {
+// create event listener for form submit button
+  $('#search-button').submit(function(event) {
+    event.preventDefault();
+// create city variable and value from city search input
+  var city = $("#search-city").val();
+  // if city value is not left blank...
+    if (city != '') { 
+      //create ajax call to openweather API
+      $.ajax({
+        //get url with city parameter with city, imperial units, and api key
+        url: 'http://api.openweathermap.org/data/2.5/weather?q=' + city + "&units=imperial" + 
+        "&APPID=049ec4543fbcbfe824a5ad0d764bbc6d",
+        type: "GET",
+        dataType: "jsonp",
+        success: function(data){
+          //console log the data to see api response
+          console.log(data);
+        }
+      });
+      //error message with an empty search
+    }else{
+      $("#error").html('Please Enter a City Name');
     }
- 
-
-  }
-searchButton.addEventListener('click' , getApi);
+  }); 
+});

@@ -27,6 +27,18 @@ body {
   color: #045074;
 } 
 
+#header h2 {
+  font-size: 200%;
+  text-align: center;
+  text-transform: capitalize;
+  color: #045074;
+
+}
+
+#time-display {
+  text-align: right;
+}
+
 #search-city {
   width: 80%;
 }
@@ -35,6 +47,17 @@ body {
 #search-button-icon {
   width: 15px;
   display: inline-block;
+}
+
+#search-button:hover {
+  color: white;
+  background-color:#37ffc3;
+  border: white;
+}
+
+#error {
+  color: red;
+  font-weight: bolder;
 }
 
 /*Current weather padding */
