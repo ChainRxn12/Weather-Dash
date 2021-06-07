@@ -39,6 +39,17 @@ body {
   text-align: right;
 }
 
+h2 {
+  font-size: 30px;
+  color:#045074;
+  font-weight: bolder;
+}
+
+h3 {
+  font-size: 15px;
+  color:#045074;
+}
+
 #search-city {
   width: 80%;
 }

@@ -15,7 +15,7 @@ setInterval(displayTime, 1000);
 // ready DOM
 $(document).ready(function() {
 // create event listener for form submit button
-  $('#search-button').submit(function(event) {
+  $('#search-button').click(function(event) {
     event.preventDefault();
 // create city variable and value from city search input
   var city = $("#search-city").val();
@@ -23,7 +23,7 @@ $(document).ready(function() {
     if (city != '') { 
       //create ajax call to openweather API
       $.ajax({
-        //get url with city parameter with city, imperial units, and api key
+        //get url current weather params = city, imperial units, and api key
         url: 'http://api.openweathermap.org/data/2.5/weather?q=' + city + "&units=imperial" + 
         "&APPID=049ec4543fbcbfe824a5ad0d764bbc6d",
         type: "GET",
@@ -31,6 +31,23 @@ $(document).ready(function() {
         success: function(data){
           //console log the data to see api response
           console.log(data);
+          var weatherList = currentWeather(data);
+          //adds current weather to be displayed on right side of html
+          $("#current-weather").html(weatherList);
+          //clears out search bar
+          $("#search-city").val('');
+          //run second ajax call to openweather API
+          $.ajax({
+            url: 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + "&units=imperial" +
+            '&appid=049ec4543fbcbfe824a5ad0d764bbc6d',
+            type: "GET",
+            dataType:'jsonp',
+            success: function(data){
+              console.log(data);
+              // var weatherListTwo = weatherForecast (data);
+              // $("#five-day-forecast").html(weatherListTwo);
+            }
+          })
         }
       });
       //error message with an empty search
@@ -39,3 +56,24 @@ $(document).ready(function() {
     }
   }); 
 });
+
+function currentWeather(data) {
+  return "<h2><strong>Current Weather For</strong>: <img src='http://openweathermap.org/img/wn/"+data.weather[0].icon+".png'> "+ data.name +" </h2>" +
+         //"<h3><strong>Date</strong>: "+ data.dt +"</h3>" +
+         "<h3><strong>Temperature</strong>: "+ data.main.temp +"&deg;F</h3>" +
+         "<h3><strong>Weather</strong>: "+ data.weather[0].main +"</h3>" +
+         "<h3><strong>Description</strong>: "+ data.weather[0].description +"</h3>" +
+         "<h3><strong>Humidity</strong>: "+ data.main.humidity +"%</h3>" +
+         "<h3><strong>Wind Speed</strong>: "+ data.wind.speed +"mph</h3>" +
+         "<h3><strong>UV Index</strong>: "+ data.weather[0].main +"</h3>";
+}
+
+// function weatherForecast(data) {
+//   return "<h2><strong>Five Day Weather For</strong>: "+ data.name +" </h2>" +
+//          "<h3><strong>Temperature</strong>: "+ data.list.main.temp +"&deg;F</h3>" +
+//          "<h3><strong>Weather</strong>: "+ data.list.weather.main +"</h3>" +
+//          "<h3><strong>Description</strong>: "+ data.list.weather.description +"</h3>" +
+//          "<h3><strong>Humidity</strong>: "+ data.list.main.humidity +"%</h3>" +
+//          "<h3><strong>Wind Speed</strong>: "+ data.list.wind.speed +"mph</h3>";
+//          //"<h3><strong>UV Index</strong>: "+ data.weather[0].main +"</h3>";
+// }
