@@ -23,7 +23,7 @@ $(document).ready(function() {
       fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + "&units=imperial" + 
       "&APPID=049ec4543fbcbfe824a5ad0d764bbc6d")
       .then(res => res.json())
-      
+      .then (res => console.log(res))
       .then(data => {
         
         
@@ -35,7 +35,7 @@ $(document).ready(function() {
             $("#search-city").val('')
             fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=imperial&appid=049ec4543fbcbfe824a5ad0d764bbc6d`)
             .then(res => res.json())
-            
+            .then (res => console.log(res))
             .then(fiveDayData => {
               var fiveDayWeather = weatherForecast(fiveDayData);
               $("#five-day-forecast").html(fiveDayWeather);
@@ -62,7 +62,10 @@ function currentWeather(data) {
 }
 
 function weatherForecast(fiveDayData) {
-  return "<h2><strong>Five Day Weather For</strong>:  "+ fiveDayData.name +" </h2>" ;
+  var cards = '';
+  for (i=0; i < fiveDayData.length; i++)
+  return 
+  //"<h2><strong>Five Day Weather For</strong>:  "+ fiveDayData.name +" </h2>" ;
         //  "<h3><strong>Temperature</strong>: "+ fiveDayData.daily.temp +"&deg;F</h3>" +
         //  "<h3><strong>Weather</strong>: "+ fiveDayData.daily.weather.main +"</h3>" +
         //  "<h3><strong>Description</strong>: "+ fiveDayData.daily.weather.description +"</h3>" +
