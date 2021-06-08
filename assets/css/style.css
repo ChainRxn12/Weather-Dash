@@ -87,14 +87,16 @@ h3 {
 /*Current weather padding */
 #current-weather {
   padding-left: 15px;
+  background-color: white;
 }
 
 /* Weather card styling */
 .weather-card{
-  width: 9rem;
-  background-color: #0275d8;
+  width: 25%;
+  background-color: #045074;
   color: white;
   text-align: center;
+  border: 1px solid white;
 }
 
 /* UV coloring scheme for UV display */

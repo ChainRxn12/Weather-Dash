@@ -39,6 +39,7 @@ $(document).ready(function() {
               var fiveDayWeather = weatherForecast(fiveDayData);
               $("#five-day-forecast").html(fiveDayWeather);
             })
+            
         })
       
    
@@ -65,44 +66,36 @@ function weatherForecast(fiveDayData) {
   <h2>5-Day Forecast:</h2>
   <div id="fiveDayForecastUl" class="d-inline-flex flex-wrap ">`;
   // Loop over the forecast and build the template HTML using UTC offset and Open Weather Map icon
-  for (let i = 0; i < fiveDayData.daily.length; i++) {
+  for (let i = 0; i < fiveDayData.daily.length-3; i++) {
       let dayData = fiveDayData.daily[i];
       let dayTimeUTC = dayData.dt;
       let timeZoneOffset = fiveDayData.timezone;
       let timeZoneOffsetHours = timeZoneOffset / 60 / 60;
       let thisMoment = moment.unix(dayTimeUTC).utc().utcOffset(timeZoneOffsetHours);
       let iconURL = "https://openweathermap.org/img/w/" + dayData.weather[0].icon + ".png";
+      
       // Only displaying mid-day forecasts
-      if (thisMoment.format("HH:mm:ss") === "11:00:00" || thisMoment.format("HH:mm:ss") === "12:00:00" || thisMoment.format("HH:mm:ss") === "13:00:00") {
+     
           fiveDayForecastHTML += `
           <div class="weather-card card m-2 p0">
               <ul class="list-unstyled p-3">
                   <li>${thisMoment.format("MM/DD/YY")}</li>
                   <li class="weather-icon"><img src="${iconURL}"></li>
-                  <li>Temp: ${dayData.daily.temp}&#8457;</li>
-                  <br>
-                  <li>Humidity: ${dayData.daily.humidity}%</li>
+                  <li>Temp: ${dayData.temp.day}&#8457;</li>
+                  <li>Weather: ${dayData.weather[0].main}</li>
+                  <li>Desc.: ${dayData.weather[0].description}<li>
+                  <li>Humidity: ${dayData.humidity}%</li>
+                  <li>Wind Speed: ${dayData.wind_speed} mph<li>
+                  <li>UV Index: ${dayData.uvi}<li>
               </ul>
           </div>`;
-      }
-      return fiveDayForecastHTML;
+      console.log(dayData.temp);
+      
   }
   // Build the HTML template
   fiveDayForecastHTML += `</div>`;
-  // Append the five-day forecast to the DOM
-  $('#five-day-forecast').html(fiveDayForecastHTML);
+  return fiveDayForecastHTML;
 }
-
-  
-  //"<h2><strong>Five Day Weather For</strong>:  "+ fiveDayData.name +" </h2>" ;
-        //  "<h3><strong>Temperature</strong>: "+ fiveDayData.daily.temp +"&deg;F</h3>" +
-        //  "<h3><strong>Weather</strong>: "+ fiveDayData.daily.weather.main +"</h3>" +
-        //  "<h3><strong>Description</strong>: "+ fiveDayData.daily.weather.description +"</h3>" +
-        //  "<h3><strong>Humidity</strong>: "+ fiveDayData.daily.humidity +"%</h3>" +
-        //  "<h3><strong>Wind Speed</strong>: "+ fiveDayData.daily.wind_speed +"mph</h3>" +
-        //  "<h3><strong>UV Index</strong>: "+ fiveDayData.daily.uvi +"</h3>";
-
-
 
 
 // var currentWeather = () => {
