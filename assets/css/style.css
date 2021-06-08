@@ -78,10 +78,15 @@ h3 {
 
 /* clear storage below list of cities */
 #clear-storage{
-  color:grey;
+  color:blue;
   text-decoration: none;
   font-size:.75em;
   margin: .5em 0em 0em .5em;
+}
+
+/*Current weather padding */
+#current-weather {
+  padding-left: 15px;
 }
 
 /* Weather card styling */
