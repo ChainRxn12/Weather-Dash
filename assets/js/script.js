@@ -19,6 +19,7 @@ $(document).ready(function() {
     event.preventDefault();
 // create city variable and value from city search input
   var city = $("#search-city").val();
+  
   // if city value is not left blank...
     if (city != '') { 
       //create ajax call to openweather API
@@ -29,25 +30,18 @@ $(document).ready(function() {
         type: "GET",
         dataType: "jsonp",
         success: function(data){
-          //console log the data to see api response
+          //console log the current weather data to see api response
           console.log(data);
+          localStorage.setItem('City Name', city);
           var weatherList = currentWeather(data);
           //adds current weather to be displayed on right side of html
           $("#current-weather").html(weatherList);
           //clears out search bar
           $("#search-city").val('');
           //run second ajax call to openweather API
-          $.ajax({
-            url: 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + "&units=imperial" +
-            '&appid=049ec4543fbcbfe824a5ad0d764bbc6d',
-            type: "GET",
-            dataType:'jsonp',
-            success: function(data){
-              console.log(data);
-              // var weatherListTwo = weatherForecast (data);
-              // $("#five-day-forecast").html(weatherListTwo);
-            }
-          })
+          //  $.ajax({
+          //    url: 'https://api.openweathermap.org/data/2.5/onecall?' "&lat="
+          
         }
       });
       //error message with an empty search
@@ -77,3 +71,5 @@ function currentWeather(data) {
 //          "<h3><strong>Wind Speed</strong>: "+ data.list.wind.speed +"mph</h3>";
 //          //"<h3><strong>UV Index</strong>: "+ data.weather[0].main +"</h3>";
 // }
+
+//var latLong = 'https://api.openweathermap.org/geo/1.0/direct?q=' + city , &state, &country + '&appid=049ec4543fbcbfe824a5ad0d764bbc6d',
