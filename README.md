@@ -20,7 +20,8 @@
 #### Screenshots
 
 
-![Screen Shot 2021-06-08 at 1 45 10 PM](https://user-images.githubusercontent.com/78969397/121284766-fb38e880-c8a2-11eb-95ce-818d8ce6a77e.png)
+![weather-DASH.pdf](https://github.com/ChainRxn12/Weather-Dash/files/6621067/weather-DASH.pdf)
+
 
 
 
