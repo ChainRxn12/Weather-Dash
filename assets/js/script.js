@@ -58,8 +58,8 @@ function currentWeather(data) {
          "<h3><strong>Weather</strong>: "+ data.weather[0].main +"</h3>" +
          "<h3><strong>Description</strong>: "+ data.weather[0].description +"</h3>" +
          "<h3><strong>Humidity</strong>: "+ data.main.humidity +"%</h3>" +
-         "<h3><strong>Wind Speed</strong>: "+ data.wind.speed +"mph</h3>" +
-         "<h3><strong>UV Index</strong>: "+ data.weather[0].main +"</h3>";
+         "<h3><strong>Wind Speed</strong>: "+ data.wind.speed +"mph</h3>" ;
+         
 }
 //function and for loop for the five day data forecast
 function weatherForecast(fiveDayData) {
@@ -75,7 +75,14 @@ function weatherForecast(fiveDayData) {
       let thisMoment = moment.unix(dayTimeUTC).utc().utcOffset(timeZoneOffsetHours);
       let iconURL = "https://openweathermap.org/img/w/" + dayData.weather[0].icon + ".png";
       
-      // 
+      var uvClass
+        if (dayData.uvi <= 2) {
+          uvClass = "uv-favorable"
+        }else if (dayData.uvi > 2 && dayData.uvi < 6) {
+          uvClass = "uv-moderate" 
+        }else if (dayData.uvi > 6 && dayData.uvi >= 10) {
+          uvClass = "uv-high" 
+        }
           // converting the data to the html as a list on cards
           fiveDayForecastHTML += `
           <div class="weather-card card m-2 p0">
@@ -87,7 +94,7 @@ function weatherForecast(fiveDayData) {
                   <li>Desc.: ${dayData.weather[0].description}<li>
                   <li>Humidity: ${dayData.humidity}%</li>
                   <li>Wind Speed: ${dayData.wind_speed} mph<li>
-                  <li>UV Index: ${dayData.uvi}<li>
+                  <li class=${uvClass}>UV Index: ${dayData.uvi}<li>
               </ul>
           </div>`;
       console.log(dayData.temp);
@@ -99,55 +106,7 @@ function weatherForecast(fiveDayData) {
 }
 
 
-// var currentWeather = () => {
-//   $('#city-results').empty();
-//   // If localStorage is empty
-//   if (localStorage.length===0){
-//       if (lastCity){
-//           $('#search-city').attr("value", lastCity);
-//       } else {
-//           $('#search-city').attr("value", "Austin");
-//       }
-//   } else {
-//       // Build key of last city written to localStorage
-//       let lastCityKey="cities"+(localStorage.length-1);
-//       lastCity=localStorage.getItem(lastCityKey);
-//       // Set search input to last city searched
-//       $('#search-city').attr("value", lastCity);
-//       // Append stored cities to page
-//       for (let i = 0; i < localStorage.length; i++) {
-//           let city = localStorage.getItem("cities" + i);
-//           let cityEl;
-//           // Set to lastCity if currentCity not set
-//           if (currentCity===""){
-//               currentCity=lastCity;
-//           }
-//           // Set button class to active for currentCity
-//           if (city === currentCity) {
-//               cityEl = `<button type="button" class="list-group-item list-group-item-action active">${city}</button></li>`;
-//           } else {
-//               cityEl = `<button type="button" class="list-group-item list-group-item-action">${city}</button></li>`;
-//           } 
-//           // Append city to page
-//           $('#city-results').prepend(cityEl);
-//       }
-//       // Add a "clear" button to page if there is a cities list
-//       if (localStorage.length>0){
-//           $('#clear-storage').html($('<a id="clear-storage" href="#">clear</a>'));
-//       } else {
-//           $('#clear-storage').html('');
-//       }
-//   }
-  
-// }
 
-// // Old searched cities buttons event listener
-// $('#city-results').on("click", (event) => {
-//   event.preventDefault();
-//   $('#search-city').val(event.target.textContent);
-//   currentCity=$('#search-city').val();
-//   currentWeather(event);
-// });
 
 //var latLong = 'https://api.openweathermap.org/geo/1.0/direct?q=' + city , &state, &country + '&appid=049ec4543fbcbfe824a5ad0d764bbc6d',
 
