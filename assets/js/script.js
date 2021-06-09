@@ -32,6 +32,7 @@ $(document).ready(function() {
             $("#current-weather").html(weatherList);
             //clears out search bar
             $("#search-city").val('')
+            //add future forecast to displayed beneath the current weather 
             fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=imperial&exclude=minutely,hourly,alerts&appid=049ec4543fbcbfe824a5ad0d764bbc6d`)
             .then(res => res.json())
             .then(fiveDayData => {
@@ -60,7 +61,7 @@ function currentWeather(data) {
          "<h3><strong>Wind Speed</strong>: "+ data.wind.speed +"mph</h3>" +
          "<h3><strong>UV Index</strong>: "+ data.weather[0].main +"</h3>";
 }
-
+//function and for loop for the five day data forecast
 function weatherForecast(fiveDayData) {
   let fiveDayForecastHTML = `
   <h2>5-Day Forecast:</h2>
@@ -74,8 +75,8 @@ function weatherForecast(fiveDayData) {
       let thisMoment = moment.unix(dayTimeUTC).utc().utcOffset(timeZoneOffsetHours);
       let iconURL = "https://openweathermap.org/img/w/" + dayData.weather[0].icon + ".png";
       
-      // Only displaying mid-day forecasts
-     
+      // 
+          // converting the data to the html as a list on cards
           fiveDayForecastHTML += `
           <div class="weather-card card m-2 p0">
               <ul class="list-unstyled p-3">
