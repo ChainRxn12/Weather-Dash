@@ -20,7 +20,7 @@
 #### Screenshots
 
 
-![weather-DASH.pdf](https://github.com/ChainRxn12/Weather-Dash/files/6621067/weather-DASH.pdf)
+[weather-DASH.pdf](https://github.com/ChainRxn12/Weather-Dash/files/6621067/weather-DASH.pdf)
 
 
 
