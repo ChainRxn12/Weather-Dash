@@ -2,10 +2,12 @@
 
 ## Table of Contents
 * [Project Overview](#Project-overview)
+* [Technology Used](#Technology-used)
 * [Screenshots](#Screenshots)
 * [Deployed URL](#Deployed-url)
+* [Future Development](#Future-development)
 
-### Project Overview
+## Project Overview
 
 * The goal of this application was to create a weather application that could display current and five day forecasted weather for a specific city using OpenWeatherMap APIs.
 
@@ -17,7 +19,17 @@
 
 * The user's events will be saved even upon refreshing.
 
-#### Screenshots
+## Technology Used
+
+* CSS
+* HTML
+* Bootstrap
+* JavaScript
+* Moment
+* JQuery
+* API
+
+## Screenshots
 
 
 ![weather-dash2 0](https://user-images.githubusercontent.com/78969397/121293228-e1060700-c8b0-11eb-8d59-abb6be73cca2.png)
@@ -27,6 +39,11 @@
 
 
 
-##### Deployed URL
+## Deployed URL
 
 [Weather-DASH](https://chainrxn12.github.io/Weather-Dash/ "Weather-DASH Home")
+
+## Future Development
+
+* I want to make History Search buttons
+* Add Heat Index
